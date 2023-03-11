@@ -5,24 +5,24 @@
   <meta charset='UTF-8' />
   <meta http-equiv='X-UA-Compatible' content='IE=edge' />
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-  <title></title>
+  <title>Advance TODO APP | VJS</title>
   <link rel='stylesheet' href='./App.css' />
 </head>
 
-<body class="has-scrollber">
+<body>
 
 
 
   <section>
     <div class="grid place-items-center bg-blue-100 h-screen px-6 font-sans">
       <div class="p-5 fixed top-0 left-0 w-full h-auto flex flex-row items-center justify-center">
-        <div class="heading">
+        <div
+          class="header text-center bg-cyan-500 py-4 px-7 rounded-[50px] text-white font-bold text-3xl shadow-lg uppercase">
           Simple Todo Application with <span class="text-[#ce150f] pl-2 font-['Roboto_Mono']">vanilla javascript</span>
         </div>
       </div>
 
-      <div
-        class="w-full max-w-3xl rounded-lg p-6 bg-white shadow-[1px_5px_20px_5px_rgba(0,0,0,0.1)] has-scrollbar todos-body">
+      <div class="w-full max-w-3xl rounded-lg p-6 bg-white shadow-[1px_5px_20px_5px_rgba(0,0,0,0.1)]">
         <div>
           <form class="todo-form" id="todoForm" actionId="">
             <div
@@ -56,34 +56,30 @@
         <hr class="mt-4" />
 
         <!-- todo list start -->
-        <div class="todos-container has-scrollbar">
-          <div class="todo-lists" id="todoLists">
+        <div class="todo-lists" id="todoLists">
 
-          </div>
         </div>
         <!-- todo list end -->
 
         <hr class="mt-4" />
 
-        <div class="todos-filtering">
+        <div class="mt-4 flex justify-between text-xs text-gray-500">
           <p class="capitalize" id="taskStatus">2 tasks left</p>
-          <div class="flex space-x-1 items-center text-xs duration filter-box">
-            <ul class="filter-status-btn">
-              <li class="filterBySelect selected" onclick="filterByMarks(event,'all')">
-                All
-              </li>
-              <li>|</li>
-              <li class="filterBySelect" onclick="filterByMarks(event,'incomplete')">Incomplete</li>
-              <li>|</li>
-              <li class="filterBySelect" onclick="filterByMarks(event,'complete')">Complete</li>
-            </ul>
-            <ul class="filter-color-btn">
-              <li class="filter-green" onclick="filterByColorTodos(event,'green')"></li>
-              <li class="filter-yellow" onclick="filterByColorTodos(event,'yellow')"></li>
-              <li class="filter-red" onclick="filterByColorTodos(event,'red')"></li>
-              </li>
-            </ul>
-          </div>
+          <ul class="flex space-x-1 items-center text-xs duration">
+            <li class="filterBySelect selected" onclick="filterByMarks(event,'all')">
+              All
+            </li>
+            <li>|</li>
+            <li class="filterBySelect" onclick="filterByMarks(event,'incomplete')">Incomplete</li>
+            <li>|</li>
+            <li class="filterBySelect" onclick="filterByMarks(event,'complete')">Complete</li>
+            <li></li>
+            <li></li>
+            <li class="filter-green" onclick="filterByColorTodos(event,'green')"></li>
+            <li class="filter-yellow" onclick="filterByColorTodos(event,'yellow')"></li>
+            <li class="filter-red" onclick="filterByColorTodos(event,'red')"></li>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

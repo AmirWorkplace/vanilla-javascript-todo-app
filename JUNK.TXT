@@ -1,0 +1,26 @@
+const initialState = [
+  {
+    id: 1,
+    text: "Bangladesh is Highly Corrupted Country by their Political People!",
+    tags: ["green", "yellow", "red"],
+    isCompleted: false,
+  },
+  {
+    id: 2,
+    text: "Bangladesh is Highly Over Populated Country!",
+    tags: ["green", "yellow"],
+    isCompleted: false,
+  },
+  {
+    id: 3,
+    text: "Bangladesh is Riverine Country!",
+    tags: ["red"],
+    isCompleted: true,
+  },
+  {
+    id: 4,
+    text: "Bangladesh is Muslims Country!",
+    tags: [],
+    isCompleted: true,
+  },
+]

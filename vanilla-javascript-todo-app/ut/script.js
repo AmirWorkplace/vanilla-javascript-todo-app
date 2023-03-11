@@ -69,59 +69,16 @@ const taskStatus = document.getElementById("taskStatus")
 const inputTodoText = document.getElementById("todoText")
 const todoSubmitBtn = document.getElementById("todoSubmitBtn")
 const filterBySelect = document.querySelectorAll(".filterBySelect")
-const baseURL = "http://localhost:9000"
+const baseURL = "http://localhost:9000/"
 
 let initialState = []
 let filterColor = []
 let filterState = "all"
-let completeValue
 
 const fetchTodos = async () => {
-  const response = await fetch(`${baseURL}/todos`)
+  const response = await fetch(`${baseURL}todo-app`)
   const data = await response.json()
   return data
-}
-
-/* const insertTodo = async (data) => {
-  const response = fetch(`${baseURL}/todos`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-
-  const data = await response.json()
-  initialState = data
-} */
-
-/*  const responseData = await response.json()
-  initialState = responseData */
-// updateTodo(id, { isCompleted: true })
-// updateTodo(id, { isCompleted: true })
-
-const insertTodo = async (data) => {
-  await fetch(`${baseURL}/todos`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-}
-
-const updateTodo = async (id, data) => {
-  await fetch(`${baseURL}/todos/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-}
-
-const permanentlyDeleteTodo = async (id) => {
-  await fetch(`${baseURL}/todos/${id}`, { method: "DELETE" })
 }
 
 fetchTodos().then((data) => {
@@ -135,22 +92,21 @@ const generateNextId = (states = []) => {
   return states.reduce((maxid, state) => Math.max(state.id, maxid), -1) + 1
 }
 
-const todo = (id, text, tags = [], isCompleted) => {
+const todo = (id, text, tags = [], isSelected) => {
   const makeTodo = `
     <div class="todo-item todo_${id}" id="${id}">
       <div class="selected-todo-box"
       onclick="todoSelection(${id})">
-        <input class="cursor-pointer" type="checkbox" />
-        <svg class="${isCompleted ? "block" : "hidden"}" 
+        <input type="checkbox" />
+        <svg class="${isSelected ? "block" : "hidden"}" 
         viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /></svg>
       </div>
 
-      <div class="todo-text ${isCompleted ? "line-through" : "incomplete"}">
+      <div class="todo-text ${isSelected ? "" : "line-through"}">
         ${text}
       </div>
 
-      <div class="todo-edit-btn"
-        onclick="editTodo(${parseInt(id)},\`${text}\`)">
+      <div class="todo-edit-btn" onclick="editTodo(${id},'${text}')">
         <i class="fa-solid fa-pen-to-square"></i>
       </div>
 
@@ -177,35 +133,55 @@ const todo = (id, text, tags = [], isCompleted) => {
   return todoElement
 }
 
-function loadedTodos() {
-  if (initialState.length !== 0) {
-    initialState
-      .sort((a, b) => b.id - a.id)
-      .filter((state) =>
-        filterColor.every((color) => state.tags.includes(color))
-      )
-      .filter((state) => {
-        switch (filterState) {
-          case "all":
-            return state
-          case "incomplete":
-            return !state.isCompleted
-          case "complete":
-            return state.isCompleted
-          default:
-            return state
-        }
-      })
-      .map((state) => {
-        todoLists.appendChild(
-          todo(state.id, state.text, state.tags, state.isCompleted)
-        )
-      })
-  } else {
-    todoLists.innerHTML = '<p class="text-center">No task found!</p>'
-  }
+const initialStates = [
+  {
+    id: 1,
+    text: "Bangladesh is Highly Corrupted Country by their Political People!",
+    tags: ["green", "yellow", "red"],
+    isSelected: false,
+  },
+  {
+    id: 2,
+    text: "Bangladesh is Highly Over Populated Country!",
+    tags: ["green", "yellow"],
+    isSelected: false,
+  },
+  {
+    id: 3,
+    text: "Bangladesh is Riverine Country!",
+    tags: ["red"],
+    isSelected: true,
+  },
+  {
+    id: 4,
+    text: "Bangladesh is Muslims Country!",
+    tags: [],
+    isSelected: true,
+  },
+]
 
-  const incomplete = todoLists.querySelectorAll(".incomplete").length
+function loadedTodos() {
+  initialState
+    .filter((state) => filterColor.every((color) => state.tags.includes(color)))
+    .filter((state) => {
+      switch (filterState) {
+        case "all":
+          return state
+        case "incomplete":
+          return !state.isSelected
+        case "complete":
+          return state.isSelected
+        default:
+          return state
+      }
+    })
+    .map((state) =>
+      todoLists.appendChild(
+        todo(state.id, state.text, state.tags, state.isSelected)
+      )
+    )
+
+  const incomplete = todoLists.querySelectorAll(".line-through").length
 
   if (incomplete <= 0) {
     taskStatus.textContent = "done all tasks!"
@@ -225,11 +201,9 @@ function colorMarkTodo(color, id) {
         const tagIndex = state.tags.indexOf(color)
         if (tagIndex !== -1) {
           state.tags.splice(tagIndex, 1)
-          updateTodo(id, { tags: state.tags })
         }
       } else {
         state.tags.push(color)
-        updateTodo(id, { tags: state.tags })
       }
     }
   })
@@ -242,18 +216,15 @@ function todoSelection(id) {
 
   initialState.map((state) => {
     if (state.id === id) {
-      if (state.isCompleted) {
-        state.isCompleted = false
-        completeValue = false
+      if (state.isSelected) {
+        state.isSelected = false
       } else {
-        state.isCompleted = true
-        completeValue = true
+        state.isSelected = true
       }
     }
   })
 
   loadedTodos()
-  updateTodo(parseInt(id), { isCompleted: completeValue })
 }
 
 function insertTodoText(event) {
@@ -267,22 +238,15 @@ function insertTodoText(event) {
     initialState.map((state) => {
       if (state.id === editTodoId) {
         const stateIndex = initialState.indexOf(state)
-        updateTodo(editTodoId, { text: inputTodoText.value })
         initialState[stateIndex].text = inputTodoText.value
       }
     })
   } else {
     if (inputTodoText.value !== "") {
-      insertTodo({
-        id: generateNextId(initialState),
-        text: inputTodoText.value,
-        isCompleted: false,
-        tags: [],
-      })
       initialState.push({
         id: generateNextId(initialState),
         text: inputTodoText.value,
-        isCompleted: false,
+        isSelected: false,
         tags: [],
       })
     }
@@ -301,7 +265,6 @@ function deleteTodo(id) {
   const deleTodoIndex = initialState.indexOf(findElement)
   initialState.splice(deleTodoIndex, 1)
 
-  permanentlyDeleteTodo(id)
   loadedTodos()
 }
 
@@ -338,8 +301,7 @@ function allCompleteTasks() {
   todoLists.innerHTML = ""
 
   for (var i = 0; i < initialState.length; i++) {
-    initialState[i].isCompleted = true
-    updateTodo(initialState[i].id, { isCompleted: true })
+    initialState[i].isSelected = true
   }
 
   loadedTodos()
@@ -349,9 +311,25 @@ function clearCompleteTasks() {
   todoLists.innerHTML = ""
 
   for (var i = 0; i < initialState.length; i++) {
-    initialState[i].isCompleted = false
-    updateTodo(initialState[i].id, { isCompleted: false })
+    initialState[i].isSelected = false
   }
 
   loadedTodos()
 }
+
+// initialState = data
+// data.map((todo) => initialState.push(todo))
+// let data = null
+// function getTodoDataFromAPI() {
+// const getTodos = await response.json()
+// return await getTodos
+// return fetchTodos()
+
+// const getTodos = fetchTodos().then((todo) => {
+//   data = todo
+// })
+//   return [...data, todo]
+// return getTodos
+// }
+
+// setTimeout(() => console.log(data), 500)
