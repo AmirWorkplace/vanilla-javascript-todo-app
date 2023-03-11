@@ -82,24 +82,6 @@ const fetchTodos = async () => {
   return data
 }
 
-/* const insertTodo = async (data) => {
-  const response = fetch(`${baseURL}/todos`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-
-  const data = await response.json()
-  initialState = data
-} */
-
-/*  const responseData = await response.json()
-  initialState = responseData */
-// updateTodo(id, { isCompleted: true })
-// updateTodo(id, { isCompleted: true })
-
 const insertTodo = async (data) => {
   await fetch(`${baseURL}/todos`, {
     method: "POST",
