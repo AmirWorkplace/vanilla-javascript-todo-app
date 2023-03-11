@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    body #shihab {
+      /* transform: rotate(90deg); */
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .box {
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(52, 52, 52, 0.768);
+      background-color: rgb(226, 226, 226);
+      padding: 20px 10px;
+      border-radius: 5px;
+      transition: 0.35s;
+      cursor: pointer;
+    }
+
+    .box.active {
+      color: red;
+      border: 2px solid red;
+      background-color: rgba(255, 161, 107, 0.253);
+    }
+
+    .container2 {
+      border-radius: 6px;
+      background-color: rgba(255, 230, 118, 0.604);
+      padding: 40px 70px;
+      display: flex;
+    }
+
+    .email {
+      outline: none;
+      border: none;
+      background-color: #ccc;
+      padding: 5px 10px;
+      font-size: 20px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .btn {
+      padding: 5px 30px;
+      border: none;
+      color: white;
+      background: rgb(255, 94, 108);
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="shihab">
+    <div class="container">
+      <div class="box">100tk</div>
+      <div class="box active">200tk</div>
+      <div class="box">500tk</div>
+      <div class="box">1000tk</div>
+      <div class="box">10000k</div>
+    </div>
+
+    <div class="container2">
+      <input type="text" class="email" placeholder="Email">
+      <button class="btn">Subscribe</button>
+    </div>
+  </div>
+
+  <script>
+    const boxs = document.querySelectorAll('.box')
+
+    function activeLink(event) {
+      boxs.forEach((box) => {
+        box.classList.remove('active')
+      })
+      this.classList.add('active')
+    }
+
+    boxs.forEach((box) => box.addEventListener('click', activeLink))
+  </script>
+</body>
+
+</html>
+
+<!-- <div id="rnederList"></div>
+  <div id="rnederTest"></div>
+  <div id="rnederExperiment"></div>
+ <script src="./p.js"></script> -->

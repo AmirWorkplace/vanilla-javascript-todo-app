@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Annie+Use+Your+Telescope&family=Bebas+Neue&family=Blaka&family=Blaka+Hollow&family=Bungee&family=Codystar:wght@300&family=Dancing+Script&family=Diplomata+SC&family=Dynalight&family=Eater&family=Fascinate&family=Faster+One&family=Frijole&family=IBM+Plex+Mono:wght@100;200;300;700&family=IM+Fell+English+SC&family=Irish+Grover&family=Julius+Sans+One&family=Kdam+Thmor+Pro&family=League+Gothic&family=Macondo&family=Monofett&family=Monoton&family=Mr+Dafoe&family=Notable&family=Pacifico&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Potta+One&family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,400;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rock+Salt&family=Rubik+Mono+One&family=Rubik+Moonrocks&family=Rubik+Puddles&family=Russo+One&family=Sigmar+One&family=Stint+Ultra+Condensed&family=Tangerine&family=Ultra&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.todo-item {
+  @apply flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0;
+}
+
+.selected-todo-box {
+  /* border-grays-400 */
+  @apply rounded-full bg-white border-2  w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 border-green-500 focus-within:border-green-500;
+}
+
+.selected-todo-box input {
+  @apply opacity-0 absolute rounded-full;
+}
+
+.selected-todo-box svg {
+  @apply fill-current w-3 h-3 text-green-500 pointer-events-none;
+}
+
+.todo-color-mark {
+  @apply flex gap-1.5;
+}
+
+.todo-text {
+  @apply select-none flex-1 font-[500];
+}
+
+.color-green {
+  @apply flex-shrink-0 h-5 w-5 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500;
+}
+
+.color-yellow {
+  @apply flex-shrink-0 h-5 w-5 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500;
+}
+
+.color-red {
+  @apply flex-shrink-0 h-5 w-5 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500;
+}
+
+.todo-delete-btn {
+  @apply bg-red-200 duration-500 hover:bg-red-500 p-[6px_7px_5px_0px] rounded-md shadow-[1px_5px_20px_5px_rgba(0,0,0,0.1)];
+}
+
+.todo-edit-btn {
+  @apply bg-cyan-200 duration-500 hover:bg-yellow-500 px-2 py-1 rounded-md shadow-[1px_5px_20px_5px_rgba(0,0,0,0.1)];
+}
+
+.todo-delete-btn img {
+  @apply flex-shrink-0 w-4 h-4 ml-2 cursor-pointer;
+}
+
+.todo-lists {
+  @apply mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto;
+}
+
+.todo-form {
+  @apply flex items-center bg-gray-100 px-4 py-4 rounded-md shadow-[1px_5px_20px_5px_rgba(0,0,0,0.1)] ring-[0.2px] ring-slate-500;
+}
+
+.duration li,
+.todo-color-mark div {
+  @apply duration-300;
+}
+
+.color-green.green {
+  background-color: rgb(0, 203, 0);
+}
+
+.color-yellow.yellow {
+  background-color: rgb(255, 174, 0);
+}
+
+.color-red.red {
+  background-color: rgb(255, 9, 9);
+}
+
+.color-green.green:hover {
+  background-color: transparent;
+}
+
+.color-yellow.yellow:hover {
+  background-color: transparent;
+}
+
+.color-red.red:hover {
+  background-color: transparent;
+}
+
+.filter-green {
+  @apply h-5 w-5 border-2 border-green-500 md:hover:bg-green-500 rounded-full cursor-pointer;
+}
+
+.filter-yellow {
+  @apply h-5 w-5 border-2 border-yellow-500 md:hover:bg-yellow-500 rounded-full cursor-pointer;
+}
+
+.filter-red {
+  @apply h-5 w-5 border-2 border-red-500 md:hover:bg-red-500 rounded-full cursor-pointer;
+}
+
+.filter-green.green {
+  @apply bg-green-500;
+}
+
+.filter-yellow.yellow {
+  @apply bg-yellow-500;
+}
+
+.filter-red.red {
+  @apply bg-red-500;
+}
+
+.filter-green.green:hover {
+  background-color: transparent;
+}
+
+.filter-yellow.yellow:hover {
+  background-color: transparent;
+}
+
+.filter-red.red:hover {
+  background-color: transparent;
+}
+
+.filterBySelect {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.filterBySelect.selected {
+  @apply font-extrabold text-[16px] text-cyan-700;
+}
+
+.filterBySelect:hover {
+  @apply font-[500] text-cyan-700;
+}
+
+.rings {
+  @apply ring;
+}
+
+.rings {
+  @apply ring;
+}
+
+.rings {
+  @apply ring;
+}
+
+.rings {
+  @apply ring;
+}
+
+.rings {
+  @apply ring;
+}
+
+.rings {
+  @apply ring;
+}
+
+/* 
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins",sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+#shihab{margin-top: 20px;}
+
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+.box {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(52, 52, 52, 0.768);
+  background-color: rgb(226, 226, 226);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.box.active {
+  color: red;
+  border: 2px solid red;
+  background-color: rgba(255, 161, 107, 0.253);
+}
+
+.container2 {
+  border-radius: 6px;
+  background-color: rgba(255, 230, 118, 0.604);
+  padding: 40px 70px;
+  display: flex;
+}
+
+.name {
+  width: 300px;
+  border: none;
+  background-color: #ccc;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+}
+
+.btn {
+  width: 160px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  transition: 0.25s;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+  background: rgb(255, 94, 108);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.btn:hover{
+  letter-spacing: 0.025rem;
+  background: rgb(0, 149, 255);
+}
+
+.container {
+  display: flex;
+}
+
+.rnederList {
+  display: flex;
+  gap: 10px;
+}
+
+.renderElement {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border: 2px solid rgb(0, 149, 255);
+
+  border-radius: 6px;
+}
+
+.el_content strong {
+  color: rgb(255, 94, 108);
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.heading{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+  color: rgb(0, 45, 42);
+}
+
+.el_content,
+.element {
+  text-transform: capitalize;
+  justify-content: space-between;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-add,
+.btn-remove {
+  font-weight: 600;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 24px;
+  transition 0.35s;
+}
+
+.btn-remove {
+  background: rgb(255, 138, 148);
+  color: black;
+}
+
+.btn-add {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.btn-remove:hover         {
+  background: rgb(255, 0, 0);
+  color: white;
+}
+
+.btn-add:hover         {
+  background-color: rgb(0, 149, 255);
+  color: black;
+}
+
+.el_content p {
+  min-width: 200px;
+  padding: 0 5px;
+  text-align: left;
+}
+ */

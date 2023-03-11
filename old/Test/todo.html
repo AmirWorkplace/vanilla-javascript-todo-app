@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src='https://kit.fontawesome.com/625708b356.js' crossorigin='anonymous'></script> -->
+  <title>TODO APP | by AMIR</title>
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Annie+Use+Your+Telescope&family=Bebas+Neue&family=Blaka&family=Blaka+Hollow&family=Bungee&family=Codystar:wght@300&family=Dancing+Script&family=Diplomata+SC&family=Dynalight&family=Eater&family=Fascinate&family=Faster+One&family=Frijole&family=IBM+Plex+Mono:wght@100;200;300;700&family=IM+Fell+English+SC&family=Irish+Grover&family=Julius+Sans+One&family=Kdam+Thmor+Pro&family=League+Gothic&family=Macondo&family=Monofett&family=Monoton&family=Mr+Dafoe&family=Notable&family=Pacifico&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Potta+One&family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,400;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rock+Salt&family=Rubik+Mono+One&family=Rubik+Moonrocks&family=Rubik+Puddles&family=Russo+One&family=Sigmar+One&family=Stint+Ultra+Condensed&family=Tangerine&family=Ultra&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #shihab {
+      margin-top: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 10px;
+    }
+
+
+
+    .box {
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(52, 52, 52, 0.768);
+      background-color: rgb(226, 226, 226);
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .box.active {
+      color: red;
+      border: 2px solid red;
+      background-color: rgba(255, 161, 107, 0.253);
+    }
+
+    .container2 {
+      border-radius: 6px;
+      background-color: rgba(255, 230, 118, 0.604);
+      padding: 40px 70px;
+      display: flex;
+    }
+
+    .name {
+      width: 300px;
+      border: none;
+      background-color: #ccc;
+      padding: 5px 10px;
+      font-size: 20px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      outline: none;
+    }
+
+    .btn {
+      width: 160px;
+      padding: 5px 15px;
+      text-transform: uppercase;
+      transition: 0.25s;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 900;
+      background: rgb(255, 94, 108);
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .btn:hover {
+      letter-spacing: 0.025rem;
+      background: rgb(0, 149, 255);
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .rnederList {
+      display: flex;
+      gap: 10px;
+    }
+
+    .renderElement {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px;
+      border: 2px solid rgb(0, 149, 255);
+
+      border-radius: 6px;
+    }
+
+    .el_content {
+      margin-top: 3px;
+    }
+
+    .el_content strong {
+      color: rgb(255, 94, 108);
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 10px;
+      padding: 0 10px;
+    }
+
+    .heading {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: underline;
+      color: rgb(0, 45, 42);
+    }
+
+    .el_content,
+    .element {
+      text-transform: capitalize;
+      justify-content: space-between;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-add,
+    .btn-remove {
+      font-weight: 600;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 24px;
+      transition 0.35s;
+    }
+
+    .btn-remove {
+      background: rgb(255, 138, 148);
+      color: black;
+    }
+
+    .btn-add {
+      background-color: rgb(0, 0, 0);
+      color: white;
+    }
+
+    .btn-remove:hover {
+      background: rgb(255, 0, 0);
+      color: white;
+    }
+
+    .btn-add:hover {
+      background-color: rgb(0, 149, 255);
+      color: black;
+    }
+
+    .el_content p {
+      min-width: 200px;
+      padding: 0 5px;
+      text-align: left;
+    }
+  </style>
+
+  <style>
+    .color-mark {
+      display: flex;
+      padding: 0 0 0 15px;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      max-width: 120px;
+    }
+
+    .color-mark .clr.green {
+      /* background-color: rgb(0, 203, 0); */
+      outline: 3px solid rgb(0, 203, 0);
+      outline-offset: 2px;
+    }
+
+    .color-mark .clr.yellow {
+      /* background-color: rgb(255, 217, 0); */
+      outline: 3px solid rgb(255, 196, 0);
+      outline-offset: 2px;
+    }
+
+    .color-mark .clr.red {
+      /* background-color: rgb(255, 9, 9); */
+      outline: 3px solid rgb(255, 9, 9);
+      outline-offset: 2px;
+    }
+
+    .todo-element.green .color-mark .clr.green {
+      background-color: rgb(0, 203, 0);
+    }
+
+    .todo-element.yellow .clr.yellow {
+      background-color: rgb(255, 217, 0);
+    }
+
+    .todo-element.red .color-mark .clr.red {
+      background-color: rgb(255, 9, 9);
+    }
+
+    .color-mark .clr {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      /* background-color: black; */
+    }
+
+    .check-mark {
+      padding: 0px;
+      margin-left: 0 5px;
+    }
+
+    .check-mark i {
+      margin-top: 3px;
+      font-size: 25px;
+    }
+
+    .todo-element .check-mark .fa-circle-check {
+      display: none;
+    }
+
+    .todo-element .check-mark .fa-circle {
+      display: block;
+    }
+
+    .todo-element.marked .check-mark .fa-circle {
+      display: none;
+    }
+
+    .todo-element.marked .check-mark .fa-circle-check {
+      display: block;
+    }
+
+    .todo-element .todo-text {
+      text-decoration-line: line-through;
+    }
+
+    .todo-element.marked .todo-text {
+      font-weight: 500;
+      text-decoration-line: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="shihab">
+    <h1 class="heading">Todo App</h1>
+    <form class="container2 submit-form">
+      <input type="text" class="name" placeholder="Type Your Name Here ....">
+      <button class="btn submit-btn">Subscribe</button>
+    </form>
+  </div>
+
+  <div>
+    <h1 class="heading">Todo Lists</h1>
+    <div id="rnederTodos"></div>
+  </div>
+  </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script>
+
+    const yourName = document.querySelector(".name")
+    const submitBtn = document.querySelector(".submit-btn")
+    const submitForm = document.querySelector(".submit-form")
+
+    const initialState = ["syed amir ali", 'Abdur Razzam', 'rafikul islam']
+    const markedTodos = []
+    const greenTodos = []
+    const yellowTodos = []
+    const redTodos = []
+
+    function generateRandomId() {
+      let id = '';
+      for (let i = 0; i < 5; i++) {
+        id += Math.floor(Math.random() * 10);
+      }
+      return parseInt(id);
+    }
+
+    function renderLists(todos = []) {
+      const renderElement = `
+      <div class="renderElement">
+        ${todos
+          .map((todoText, index) => {
+            return `
+              <div class='element todo-element' id="id_${index}"
+               todoIndex="${index}">
+                  <p class="check-mark">
+                    <i onclick="checkMarkTodo(event)" class="fa-regular fa-circle"></i>
+                    <i onclick="checkMarkTodo(event)" class="fa-regular fa-circle-check"></i>
+                  </p>
+                <div class="el_content">
+                  <strong>${index + 1} | </strong>
+                  <p class="todo-text">${todoText}</p>
+                </div>
+                <div class="btn-container">
+                  <button class="btn-add"
+                    onclick="todoEdit(${index})"
+                  >EDIT</button>
+                  <button class="btn-remove"
+                    onclick="todoRemove(event,${index})"
+                  >REMOVE</button>
+                  <div class="color-mark">
+                    <span class="clr green" 
+                      onclick="greenTodo(event,${index})"
+                    ></span>  
+                    <span class="clr yellow" 
+                      onclick="yellowTodo(event,${index})"
+                    ></span>  
+                    <span class="clr red" 
+                      onclick="redTodo(event,${index})"
+                    ></span>  
+                  </div>
+                </div>
+              </div>
+              `
+          })
+          .join("")}
+      </div>`
+
+      const rnederTodos = document.getElementById("rnederTodos")
+
+      rnederTodos.innerHTML = renderElement
+    }
+
+    renderLists((state = initialState))
+
+    function todoEdit(index) {
+      let getName = state[index]
+      yourName.value = getName
+      submitBtn.setAttribute("index", index)
+      submitBtn.textContent = "update"
+    }
+
+
+    submitForm.addEventListener("submit", function (event) {
+      event.preventDefault()
+      if (submitBtn.textContent === "update") {
+        const updateTodoIndex = parseInt(submitBtn.getAttribute("index"))
+        state[updateTodoIndex] = yourName.value
+        renderLists(state)
+        submitBtn.textContent = "subscribe"
+        yourName.value = ""
+        console.log(updateTodoIndex)
+      } else if (yourName.value !== "") {
+        state.push(yourName.value)
+        renderLists(state)
+      }
+
+      chekMarkedTodo();
+      checkGreenTodo();
+      checkYellowTodo();
+      checkRedTodo();
+    })
+
+
+    function checkMarkTodo(event) {
+      const todo = event.target.parentElement.parentElement
+      const todoId = todo.getAttribute('id')
+      const todoIndex = todo.getAttribute('todoIndex')
+      todo.classList.toggle("marked")
+
+      if (markedTodos.includes(todoId)) {
+        const index = markedTodos.indexOf(todoId)
+        if (index !== -1) {
+          markedTodos.splice(index, 1)
+        }
+      } else {
+        markedTodos.push(todoId)
+      }
+
+    }
+
+    function chekMarkedTodo() {
+      if (markedTodos.length > 0) {
+        for (var i = 0; i < markedTodos.length; i++) {
+          (markedTodos[i] && document.getElementById(markedTodos[i]).classList.add("marked"))
+        }
+      }
+    }
+
+    function checkGreenTodo() {
+      if (greenTodos.length > 0) {
+        for (var i = 0; i < greenTodos.length; i++) {
+          (greenTodos[i] && document.getElementById(greenTodos[i]).classList.add("green"))
+        }
+      }
+    }
+
+    function checkYellowTodo() {
+      if (yellowTodos.length > 0) {
+        for (var i = 0; i < yellowTodos.length; i++) {
+          (yellowTodos && document.getElementById(yellowTodos[i]).classList.add("yellow"))
+        }
+      }
+    }
+
+    function checkRedTodo() {
+      if (redTodos.length > 0) {
+        for (var i = 0; i < redTodos.length; i++) {
+          (redTodos[i] && document.getElementById(redTodos[i]).classList.add("red"))
+        }
+      }
+    }
+
+
+
+
+    function todoRemove(event, index) {
+      const todo = event.target.parentElement.parentElement
+      const todoId = todo.getAttribute('id')
+
+      state.splice(index, 1)
+      renderLists(state)
+
+      if (markedTodos.includes(todoId)) {
+        const markTodoIndex = markedTodos.indexOf(todoId)
+        if (markTodoIndex !== -1) {
+          markedTodos.splice(markTodoIndex, 1)
+        }
+      }
+
+      if (greenTodos.includes(todoId)) {
+        const greenTodoIndex = greenTodos.indexOf(todoId)
+        if (greenTodoIndex !== -1) {
+          greenTodos.splice(greenTodoIndex, 1)
+        }
+      }
+
+      if (yellowTodos.includes(todoId)) {
+        const yellowTodoIndex = yellowTodos.indexOf(todoId)
+        if (yellowTodoIndex !== -1) {
+          yellowTodos.splice(yellowTodoIndex, 1)
+        }
+      }
+
+      if (redTodos.includes(todoId)) {
+        const redTodoIndex = redTodos.indexOf(todoId)
+        if (redTodoIndex !== -1) {
+          redTodos.splice(redTodoIndex, 1)
+        }
+      }
+
+      chekMarkedTodo()
+      checkGreenTodo()
+      checkYellowTodo()
+      checkRedTodo()
+
+
+    }
+
+    function greenTodo(event, index) {
+      const todo = event.target.parentElement.parentElement.parentElement
+      const todoId = todo.getAttribute('id')
+
+      todo.classList.toggle("green")
+
+      if (greenTodos.includes(todoId)) {
+        const index = greenTodos.indexOf(todoId)
+
+        if (index !== -1) {
+          greenTodos.splice(index, 1)
+        }
+      } else {
+        greenTodos.push(todoId)
+      }
+
+      chekMarkedTodo()
+    }
+
+    function yellowTodo(event, index) {
+      const todo = event.target.parentElement.parentElement.parentElement
+      const todoId = todo.getAttribute('id')
+
+      todo.classList.toggle("yellow")
+
+      if (yellowTodos.includes(todoId)) {
+        const index = yellowTodos.indexOf(todoId)
+
+        if (index !== -1) {
+          yellowTodos.splice(index, 1)
+        }
+      } else {
+        yellowTodos.push(todoId)
+      }
+
+      chekMarkedTodo()
+    }
+
+    function redTodo(event, index) {
+      const todo = event.target.parentElement.parentElement.parentElement
+      const todoId = todo.getAttribute('id')
+
+      todo.classList.toggle("red")
+
+      if (redTodos.includes(todoId)) {
+        const index = redTodos.indexOf(todoId)
+
+        if (index !== -1) {
+          redTodos.splice(index, 1)
+        }
+      } else {
+        redTodos.push(todoId)
+      }
+
+      chekMarkedTodo()
+    }
+
+  </script>
+</body>
+
+</html>
