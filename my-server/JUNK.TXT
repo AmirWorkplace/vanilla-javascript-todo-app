@@ -1,0 +1,93 @@
+// console.log(allAPI)
+/* async function fetchData() {
+  try {
+    const response = await fetch("../database.json")
+    const data = await response.json()
+    const dbName = Object.keys(data)
+    const link = dbName
+      .map((name) => `<a href='http://localhost:900/${name}'>${name}</a>`)
+      .join("")
+    console.log(link)
+  } catch (error) {
+    console.error(`Error loading database.json: ${error}`)
+  }
+}
+
+fetchData() */
+// xhr.open(method, `file://${databaseFileName}`, true)
+
+// function getAllAPI() {
+// dbName.push(response)
+// const link = dbName.map(
+// (name) => `<a href='http://localhost:900/${name}'>${name}</a>`
+// )
+
+// return allAPI
+// }
+//
+// document.getElementById("link").innerHTML = link
+// console.log(response)
+// console.log(link)
+// console.log(dbName)
+
+/* const databaseFileName = "../database.json"
+const xhr = new XMLHttpRequest()
+const method = "GET"
+const dbName = []
+
+xhr.open(method, databaseFileName, true)
+
+xhr.onload = () => {
+  if (xhr.status === 200) {
+    const response = JSON.parse(xhr.responseText)
+    dbName.push(Object.keys(response))
+  } else {
+    console.log(`Error loading database.json. Status code: ${xhr.status}`)
+  }
+}
+
+xhr.onerror = (error) => {
+  console.log(error)
+}
+
+xhr.send()
+
+const link = dbName
+  .map((name) => `<a href='http://localhost:900/${name}'>${name}</a>`)
+  .join("")
+console.log(link) */
+
+// const fs = require("fs")
+
+// console.log(fs)
+// const database = {
+//   transactions: [
+//     {
+//       id: 1,
+//       name: "Salary from Google",
+//       type: "income",
+//       amount: 1000000,
+//     },
+//   ],
+//   blog: [
+//     {
+//       id: 1,
+//       name: "Salary from Google",
+//       type: "income",
+//       amount: 1000000,
+//     },
+//   ],
+//   meta: [
+//     {
+//       id: 1,
+//       name: "Salary from Google",
+//       type: "income",
+//       amount: 1000000,
+//     },
+//   ],
+// }
+
+// const str =
+//   "in that case, these all are my `database.json` file's data, Now I can run this data to create a json MOCK server in `http://localhost:900` ang get this data from `http://localhost:900/transactions ,http://localhost:900/blog ,http://localhost:900/meta`. and I want to do, how can get all the data links in my script.js, when I added new table in my `database.json` then I get automatically all the available api link from the server of `database.json` files "
+
+// const dbName = ["transactions", "blog", "meta"]

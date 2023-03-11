@@ -1,0 +1,14 @@
+{
+  "name": "my-server-for-work-with-everything",
+  "description": "Example in memory Expense Tracker api with json-server by Learn with Sumit",
+  "version": "1.2.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch database.json --no-cors true --port 9000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.0"
+  },
+  "keywords": [],
+  "author": "SYED AMIR ALI"
+}
